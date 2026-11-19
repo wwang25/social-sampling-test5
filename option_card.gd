@@ -42,6 +42,8 @@ func _ready() -> void:
 	_add_border()
 	if name == "LeftCard":
 		_debug_tree(self, 0)  # TEMPORARY: remove once the gray is found
+		_ignore_mouse(self)
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
 
 # TEMPORARY: prints every node in the card with its type and anything that could paint grey.
@@ -80,6 +82,8 @@ func _add_border() -> void:
 	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE  # clicks still reach the card
 	frame.set_anchors_preset(Control.PRESET_FULL_RECT)
 	move_child(frame, 0)                # draw behind the image and text
+	_ignore_mouse(self)
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
 	# Make sure nothing inside the card paints its own grey background.
 	var clear := StyleBoxEmpty.new()
@@ -156,6 +160,11 @@ func _choose() -> void:
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector2.ONE * base_scale * 1.1, 0.15)
 
+func _ignore_mouse(node: Node) -> void:
+	for child in node.get_children():
+		if child is Control:
+			child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_ignore_mouse(child)
 
 # Called by main.gd whenever the screen size changes.
 func set_layout(pos: Vector2, new_scale: float) -> void:
