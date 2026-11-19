@@ -36,5 +36,7 @@ stretch_mode = 3
 [node name="Label" type="RichTextLabel" parent="VBox" unique_id=656224927]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
