@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bv88xksgeoikc"]
+
+[ext_resource type="Script" uid="uid://4lilffgj66wd" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://chod5se4s1op2" path="res://option_card.tscn" id="2_0xm2m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.1764706, 0.40784314, 0.76862746, 1)
+
+[node name="Main (Control)" type="Control" unique_id=564642740]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1401508573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=70634346]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_0xm2m")
+max_value = 105.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="PromptLabel" type="Label" parent="." unique_id=1262611551]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LeftCard" parent="." unique_id=1631335352 instance=ExtResource("2_0xm2m")]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 300.0
+offset_right = 350.0
+offset_bottom = 860.0
+
+[node name="RightCard" parent="." unique_id=126068788 instance=ExtResource("2_0xm2m")]
+layout_mode = 1
+offset_left = 370.0
+offset_top = 300.0
+offset_right = 690.0
+offset_bottom = 860.0
+
+[node name="StartPanel" type="CenterContainer" parent="." unique_id=43633211]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="StartPanel" unique_id=115099457]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="StartPanel/VBox" unique_id=260937804]
+custom_minimum_size = Vector2(560, 0)
+custom_maximum_size = Vector2(560, 0)
+clip_contents = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="StartButton" type="Button" parent="StartPanel/VBox" unique_id=951418681]
+layout_mode = 2
+text = "Start"
+
+[node name="EndPanel" type="CenterContainer" parent="." unique_id=847392148]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndLabel" type="Label" parent="EndPanel" unique_id=1030921279]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "All done. Thank you!"
+horizontal_alignment = 1
+autowrap_mode = 3

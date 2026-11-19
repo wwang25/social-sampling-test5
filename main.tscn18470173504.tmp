@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bv88xksgeoikc"]
+
+[ext_resource type="Script" uid="uid://4lilffgj66wd" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bi22ls74bd6nu" path="res://card.tscn" id="1_ig7tw"]
+
+[node name="Main (Control)" type="Control" unique_id=564642740]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="Background (ColorRect)" type="ColorRect" parent="." unique_id=1401508573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11764706, 0.13333334, 0.1882353, 1)
+
+[node name="Flash (ColorRect)" type="ColorRect" parent="." unique_id=1438183728]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ProgressLabel (Label)" type="Label" parent="." unique_id=1253198915]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Card (instance of card_tscn)" parent="." unique_id=1517639020 instance=ExtResource("1_ig7tw")]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 290.0
+offset_right = -600.0
+offset_bottom = -950.0
+
+[node name="StartPanel (CenterContainer)" type="CenterContainer" parent="." unique_id=43633211]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox (VBoxContainer)" type="VBoxContainer" parent="StartPanel (CenterContainer)" unique_id=115099457]
+layout_mode = 2
+
+[node name="Instructions (Label)" type="Label" parent="StartPanel (CenterContainer)/VBox (VBoxContainer)" unique_id=260937804]
+custom_minimum_size = Vector2(560, 0)
+custom_maximum_size = Vector2(560, 0)
+clip_contents = true
+layout_mode = 2
+text = "Two health behaviours appear on each card. Swipe toward the one you choose."
+autowrap_mode = 3
+
+[node name="StartButton (Button)" type="Button" parent="StartPanel (CenterContainer)/VBox (VBoxContainer)" unique_id=951418681]
+layout_mode = 2
+text = "Start"
+
+[node name="EndPanel (CenterContainer)" type="CenterContainer" parent="." unique_id=847392148]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndLabel (Label)" type="Label" parent="EndPanel (CenterContainer)" unique_id=1030921279]
+layout_mode = 2
+text = "All done. Thank you!"
