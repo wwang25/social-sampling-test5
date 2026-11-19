@@ -147,21 +147,23 @@ func _ready() -> void:
 	
 
 
+
 # Sizes and centres the two cards to suit the current screen.
 func _layout() -> void:
-	var card_size: Vector2 = left_card.size
-	var pair_width := card_size.x * 2.0 + CARD_GAP
-
+	var base_size: Vector2 = left_card.BASE_SIZE
+	var pair_width := base_size.x * 2.0 + CARD_GAP
+ 
 	# Scale so the pair uses up to 94% of the width and 55% of the height.
-	var s := minf(size.x * 0.94 / pair_width, size.y * 0.55 / card_size.y)
+	var s := minf(size.x * 0.94 / pair_width, size.y * 0.55 / base_size.y)
 	s = minf(s, MAX_CARD_SCALE)
-
-	# Cards scale around their centre, so place them by their centres.
+ 
+	# The cards are really resized, so work with their final size.
+	var card_size := base_size * s
 	var centre := size / 2.0 + Vector2(0, 40)  # slightly low, leaving room for the prompt
-	var half_gap := (card_size.x + CARD_GAP) * s / 2.0
+	var half_gap := (base_size.x + CARD_GAP) * s / 2.0
 	left_card.set_layout(centre - Vector2(half_gap, 0) - card_size / 2.0, s)
 	right_card.set_layout(centre + Vector2(half_gap, 0) - card_size / 2.0, s)
-
+ 
 	# Dragging a card to the centre chooses it.
 	var middle := centre - card_size / 2.0
 	left_card.choice_position = middle

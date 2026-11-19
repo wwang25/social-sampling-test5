@@ -16,6 +16,11 @@ var enabled := false
 var tween: Tween
 var base_scale := 1.0
 
+const BASE_SIZE := Vector2(320, 560)   # card size at scale 1.0 (main.gd reads this)
+const BASE_CONTENT := 288.0            # image width/height and label width at scale 1.0
+var base_font_size := 22
+var base_bold_font_size := 20
+
 const BORDER_COLOR := Color(0.1, 0.4, 0.9)  # blue
 const BORDER_WIDTH := 4
 
@@ -154,8 +159,14 @@ func _choose() -> void:
 
 # Called by main.gd whenever the screen size changes.
 func set_layout(pos: Vector2, new_scale: float) -> void:
-	base_scale = new_scale
+	base_scale = 1.0  # the node itself is never scaled, so text is drawn at its real size
+	size = BASE_SIZE * new_scale
+	pivot_offset = size / 2.0
+	image.custom_minimum_size = Vector2(BASE_CONTENT, BASE_CONTENT) * new_scale
+	label.custom_minimum_size.x = BASE_CONTENT * new_scale
+	label.add_theme_font_size_override("normal_font_size", roundi(base_font_size * new_scale))
+	label.add_theme_font_size_override("bold_font_size", roundi(base_bold_font_size * new_scale))
 	rest_position = pos
 	if enabled:
 		position = pos
-		scale = Vector2.ONE * base_scale
+		scale = Vector2.ONE
